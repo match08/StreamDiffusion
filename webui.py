@@ -95,13 +95,13 @@ def stream_engine(width, height, steps, acceleration, model_id_or_path, model_ty
     return f"""Model: {model_id_or_path}\nWxH: {width}x{height}\nBatch size: {steps}\nExpected: {int(fps)} FPS\nStatus: Ready"""
 
 def git_fn(git_type):
-    repo_url = 'https://github.com/weismarts/StreamDiffusion'
+    repo_url = 'https://github.com/match08/StreamDiffusion'
 
     try:
         subprocess.run([git_executable, "reset", "--hard"], check=True)
-        subprocess.run([git_executable, git_type, "-b bai", repo_url], check=True)
+        subprocess.run([git_executable, git_type, repo_url], check=True)
     except FileNotFoundError:
-        subprocess.run(["git", git_type,  "-b bai", repo_url], check=True)
+        subprocess.run(["git", git_type, repo_url], check=True)
         subprocess.run(["git", "reset", "--hard"], check=True)
     except subprocess.CalledProcessError:
         print(f"Failed to {git_type} the repository.")
@@ -218,7 +218,7 @@ def fix_pop():
 
        
 def check_version():
-    url = 'https://api.github.com/repos/weismarts/TouchDiffusion/releases/latest'
+    url = 'https://api.github.com/repos/match08/TouchDiffusion/releases/latest'
     try:
         response = requests.get(url)
         if response.status_code == 200:
