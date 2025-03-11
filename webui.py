@@ -138,7 +138,7 @@ def update_hypersd(amount_steps, model_type):
     return gr.Radio(lora_list, value='None', label='Add Acceleration Lora')
 
 def inst_upd():
-    cu="11"
+    cu="12"
     error_packages = []
 
     os.chdir(current_dir)
@@ -149,10 +149,10 @@ def inst_upd():
         packages = file.read().splitlines()
 
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "torch==2.1.0", "torchvision==0.16.0", "--index-url", "https://download.pytorch.org/whl/cu118"])
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "torch==2.5.0", "torchvision", "--index-url", "https://download.pytorch.org/whl/cu124"])
     except Exception as e:
         print(f"An unexpected error occurred while executing the command: {e}")
-        error_packages.append('torch==2.1.0')
+        error_packages.append('torch==2.5.0')
 
     for package in packages:
         try:
@@ -211,14 +211,14 @@ def inst_upd():
 
 def fix_pop():
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "nvidia-cudnn-cu11"])
+        subprocess.check_call([sys.executable, "-m", "pip", "uninstall", "-y", "nvidia-cudnn-cu12"])
         return 'Done. You need to restart webui.bat to apply changes.'
     except Exception as e:
         return f"An unexpected error occurred while executing the command: {e}"
 
        
 def check_version():
-    url = 'https://api.github.com/repos/olegchomp/TouchDiffusion/releases/latest'
+    url = 'https://api.github.com/repos/weismarts/TouchDiffusion/releases/latest'
     try:
         response = requests.get(url)
         if response.status_code == 200:
