@@ -446,6 +446,7 @@ class StreamDiffusionWrapper:
         StreamDiffusion
             The loaded model.
         """
+        pipe = None
         # ['sd_1.5', 'sd_1.5_turbo']
         try:
             if self.model_type == 'sd_1.5':
