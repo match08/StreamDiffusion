@@ -149,10 +149,11 @@ def inst_upd():
         packages = file.read().splitlines()
 
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "torch==2.5.0", "torchvision", "--index-url", "https://download.pytorch.org/whl/cu124"])
+        # TD python version 3.11.1 ,torch 2.4.0 CUDA 12.4, torch >= 2.5.0 bug load shm.dll faild
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "torch==2.4.0", "torchvision", "--index-url", "https://download.pytorch.org/whl/cu124"])
     except Exception as e:
         print(f"An unexpected error occurred while executing the command: {e}")
-        error_packages.append('torch==2.5.0')
+        error_packages.append('torch==2.4.0')
 
     for package in packages:
         try:
