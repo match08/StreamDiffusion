@@ -11,5 +11,5 @@ protobuf==3.20.2
 colored
 gradio
 peft
-numpy==1.26.4
+numpy==1.23.5
 -e .
